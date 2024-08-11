@@ -3,17 +3,15 @@ import React, { useState } from "react";
 function PlantCard({ plant, updatePlant, deletePlant }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newPrice, setNewPrice] = useState(plant.price);
+  const [inStock, setInStock] = useState(plant.inStock);
 
-  const handleSoldOut = () => {
-    updatePlant({ ...plant, inStock: false });
-  };
-
-  const handleInStock = () => {
-    updatePlant({ ...plant, inStock: true });
+  const handleSoldOut = () => { 
+  setInStock(!inStock);
+  updatePlant({ ...plant, inStock: !inStock });
   };
 
   const handlePriceUpdate = () => {
-    fetch(`http://localhost:6001/plants/${plant.id}`, {
+    fetch(`http://localhost:3000/plants/${plant.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -41,21 +39,20 @@ function PlantCard({ plant, updatePlant, deletePlant }) {
         <div>
           <input
             type="number"
-            step="0.01"
             value={newPrice}
             onChange={(e) => setNewPrice(e.target.value)}
           />
           <button onClick={handlePriceUpdate}>Update Price</button>
         </div>
       ) : (
-        <p>Price: ${parseFloat(plant.price || 0).toFixed(2)}</p>
+        <p>Price: {plant.price}</p>
       )}
-      {plant.inStock !== false ? (
+      {inStock ? (
         <button className="primary" onClick={handleSoldOut}>
           In Stock
         </button>
       ) : (
-        <button onClick={handleInStock}>Out of Stock</button>
+        <button onClick={handleSoldOut}>Out of Stock</button>
       )}
       <button onClick={() => setIsEditing(!isEditing)}>
         {isEditing ? "Cancel" : "Edit Price"}

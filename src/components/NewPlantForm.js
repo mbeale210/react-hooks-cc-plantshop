@@ -21,10 +21,7 @@ function NewPlantForm({ addPlant }) {
       headers: {
         "Content-Type": "Application/JSON",
       },
-      body: JSON.stringify({
-        ...formData,
-        price: parseFloat(formData.price),
-      }),
+      body: JSON.stringify(formData),
     })
       .then((response) => response.json())
       .then((newPlant) => {
