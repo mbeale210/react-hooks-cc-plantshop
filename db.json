@@ -41,6 +41,12 @@
       "name": "Fiddle Leaf Fig",
       "image": "./images/fiddle-leaf-fig.jpg",
       "price": 55
+    },
+    {
+      "name": "Aspen Tree",
+      "image": "https://media.istockphoto.com/id/688328842/photo/aspen-trees-in-colorado-on-a-beautiful-autumn-day-focusing-on-the-tree-trunks-with-a-focus-on.jpg?s=1024x1024&w=is&k=20&c=tnikLBnDA0b4SFxRbT5qdXEalqHC8U2kfr9wSH7QAAE=",
+      "price": 1000000,
+      "id": 8
     }
   ]
 }

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-function NewPlantForm({ setPlants }) {
+function NewPlantForm({ addPlant }) {
   const [formData, setFormData] = useState({
-     name: "",
-     image: "",
-     price: "",
+    name: "",
+    image: "",
+    price: "",
   });
 
   const handleChange = (e) => {
@@ -16,10 +16,10 @@ function NewPlantForm({ setPlants }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:3000/plants", {
+    fetch("http://localhost:6001/plants", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "Application/JSON",
       },
       body: JSON.stringify({
         ...formData,
@@ -28,11 +28,10 @@ function NewPlantForm({ setPlants }) {
     })
       .then((response) => response.json())
       .then((newPlant) => {
-        setPlants((plants) => [...plants, newPlant]);
+        addPlant(newPlant);
         setFormData({ name: "", image: "", price: "" });
       });
   };
-
 
   return (
     <div className="new-plant-form">
