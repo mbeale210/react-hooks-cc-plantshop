@@ -10,11 +10,9 @@ function PlantPage() {
   useEffect(() => {
     fetch("http://localhost:6001/plants")
       .then((response) => response.json())
-      // Highlight start
       .then((data) =>
         setPlants(data.map((plant) => ({ ...plant, inStock: true })))
       );
-    // Highlight end
   }, []);
 
   
